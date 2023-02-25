@@ -112,3 +112,20 @@ Schema::create((new ProductCategory())->getTable(), function (Blueprint $table) 
 });
 ```
 
+## Tip: JSON casting
+
+Like enums, you can also **cast attributes to objects or arrays**. So, in our example, we can do the following:
+
+```
+class ProductCategory extends Model {
+    protected $casts = [
+        'icon' => 'object'
+    ];
+}
+```
+
+When you will try to access the icon, it will return an object like the following:
+
+```
+return $category->icon; // {name: 'smartphone-icon', color: '#ff00ff'}
+```
