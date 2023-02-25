@@ -97,3 +97,18 @@ Schema::create((new Customer())->getTable(), function (Blueprint $table) {
           ->constrained(); //add the foreign constraint
 }
 ```
+
+## Use JSON to store objects or arrays
+
+When you are at university, **everyone will say that database normalization is a core concept in SQL databases**, and typically you will have to create a separate table for complex data such as objects or arrays. And **it is true, but sometimes you can have the need to store an object or an array into a table**.
+
+For example, we have an e-commerce where products have a category (computers, smartphones, etc.) and each category should have an icon defined by its name (imagine you are using an icon library) and a hex color.
+
+In this case, as said before, you can create a separate table, but I think you have to choose when this action is really necessary. Assume we want to store the icon (so an object), you can create a JSON column by typing:
+
+```
+Schema::create((new ProductCategory())->getTable(), function (Blueprint $table) {
+    $table->json('icon')->nullable();
+});
+```
+
